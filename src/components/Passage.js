@@ -18,7 +18,7 @@ class Passage extends Component {
         headers : {
             'Content-Type':'application/json;charset=UTF-8'
         },
-    };
+      };
       axios.post('http://localhost:8091/api/1/getDidInfo', JSON.stringify({
         "txIds": [
           tx
