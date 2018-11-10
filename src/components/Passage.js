@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
-import { Card, Col, Row, Layout, Alert, message, Button } from 'antd';
+import { Card, Col, Row, Layout, List, message, Button } from 'antd';
 import axios from 'axios'
 
 class Passage extends Component {
     constructor(props) {
       super(props);
-      this.state = {};
+      this.state = {
+        tx: props.tx
+      };
     }
+
     componentDidMount() {
-      const { account, payroll } = this.props;
+      const { tx } = this.props;
+      if (!tx)
+        return;
       let config = {
         headers : {
             'Content-Type':'application/json;charset=UTF-8'
@@ -16,7 +21,7 @@ class Passage extends Component {
     };
       axios.post('http://localhost:8091/api/1/getDidInfo', JSON.stringify({
         "txIds": [
-          "6A34F0F0A6D5F9F4EFC481587143CFC0100811911CD67B3DA98663FB609A8493"
+          tx
         ],
         "key": "boarticle"
       }), config)
@@ -39,6 +44,10 @@ class Passage extends Component {
           _detail = detail;
         }
         return (
+          <List.Item.Meta
+          title={_title}
+          description={_detail}
+          />/*
             <div>
               <Row gutter={16}>
                 <Col span={16}>
@@ -57,18 +66,13 @@ class Passage extends Component {
               >
                 button2
               </Button>
-            </div>
+            </div>*/
           );
     }
     render() {
         const { account, payroll, web3 } = this.props;
     
-        return (
-          <Layout style={{ padding: '0 24px', background: '#fff' }}>
-            <h2>Passage</h2>
-            {this.renderContent()}
-          </Layout >
-        );
+        return this.renderContent()
     }
 }
 export default Passage

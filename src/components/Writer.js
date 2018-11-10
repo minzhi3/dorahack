@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Icon, Card, Col, Row, Layout, Input, Button } from 'antd';
+import { Form, Icon, Col, Row, Layout, Input, Button } from 'antd';
+import axios from 'axios'
 
 const { TextArea } = Input;
 
@@ -9,30 +10,67 @@ class Writer extends Component {
       this.state = {};
     }
 
-    newPassage() {
-
+    newPassage = (e) => {
+      e.preventDefault();
+      const {title, detail} = this.state;
+      if (!title || !detail) return;
+      let config = {
+        headers : {
+            'Content-Type':'application/json;charset=UTF-8'
+        },
+      };
+      const dateTime = Date.now();
+      const timestamp = Math.floor(dateTime / 1000);
+      axios.post('http://localhost:8091/api/1/setDidInfo', JSON.stringify({
+        "privateKey":"306E613E4412C23D5D8E931475C3711A25639237CF41EBFD5D7EA301E4368136",
+        "settings":{
+            "privateKey":"3DAD971B50498816D6D47A17120989CA3EAB265582AE6099BE03650E2DBB232C",
+            "info":{
+                "boarticle":{
+                    "title":title,
+                    "detail":detail,
+                    "date":timestamp,
+                    "next":"9ADBAD8857DBB4F060417BAFFDBF3C6565E6C18FA59CF109730851EE345F2684"
+                }
+            }
+        }
+      }), config)
+      .then(response => {
+        alert(JSON.stringify(response));
+      });
     }
+
     renderContent() {
         const { passage, lastPaidDate, balance } = this.state;
-    
+        const FormItem = Form.Item;
         return (
-            <div>
-                <Row gutter={16}>
+              <Form onSubmit={this.newPassage}>
+
+              <Row gutter={16}>
                     <Col span={16}>
-                        <TextArea placeholder="Autosize height based on content lines" autosize />
-                            <div style={{ margin: '24px 0' }} />
-                        <TextArea placeholder="Autosize height with minimum and maximum number of lines" autosize={{ minRows: 10, maxRows: 20 }} />
+                      <FormItem>
+                        <TextArea placeholder="title" 
+                        onChange={e => this.setState({title: e.target.value})} autosize 
+                        />
+                      </FormItem>
+                      <FormItem>
+                        <TextArea placeholder="detail" 
+                        onChange={e => this.setState({detail: e.target.value})} 
+                        autosize={{ minRows: 10, maxRows: 20 }} 
+                        /> 
+                      </FormItem>
                     </Col>
                 </Row>
+                <FormItem>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                >
+                  Submit
+                </Button>
+                </FormItem>
 
-              <Button
-                type="primary"
-                icon="bank"
-                onClick={this.newPassage}
-              >
-                button2
-              </Button>
-            </div>
+              </Form>
           );
     }
     render() {

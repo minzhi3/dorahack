@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Menu, Spin, Alert } from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
-import Passage from './components/Passage';
+import PassageList from './components/PassageList';
 import Writer from './components/Writer';
 
 const { Header, Content, Footer } = Layout;
@@ -20,7 +20,7 @@ class App extends Component {
 
     switch(mode) {
       case 'passage':
-        return <Passage />
+        return <PassageList />
       case 'writer':
         return <Writer />
       default:
