@@ -22,7 +22,7 @@ class Writer extends Component {
       const dateTime = Date.now();
       const timestamp = Math.floor(dateTime / 1000);
       axios.post('http://localhost:8091/api/1/setDidInfo', JSON.stringify({
-        "privateKey":"306E613E4412C23D5D8E931475C3711A25639237CF41EBFD5D7EA301E4368136",
+        "privateKey":"3476CC4858D2C7EBA3C7C25DB788EE112FD6C7D72A2B39746E482212E64B9870",
         "settings":{
             "privateKey":"3DAD971B50498816D6D47A17120989CA3EAB265582AE6099BE03650E2DBB232C",
             "info":{
