@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-import { Card, Col, Row, Layout, Input, Button } from 'antd';
+import { Form, Icon, Card, Col, Row, Layout, Input, Button } from 'antd';
+
 const { TextArea } = Input;
 
 class Writer extends Component {
     constructor(props) {
       super(props);
       this.state = {};
+    }
+
+    newPassage() {
+
     }
     renderContent() {
         const { passage, lastPaidDate, balance } = this.state;
@@ -23,7 +28,7 @@ class Writer extends Component {
               <Button
                 type="primary"
                 icon="bank"
-                //onClick={this.hoge}
+                onClick={this.newPassage}
               >
                 button2
               </Button>
