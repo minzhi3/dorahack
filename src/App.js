@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Spin, Alert } from 'antd';
+import 'antd/dist/antd.css';
 import './App.css';
+import Passage from './components/Passage';
 
 const { Header, Content, Footer } = Layout;
 class App extends Component {
 
   renderContent = () => {
-    return "textfjadlfkajfhalkjdhfalkfhakjfdhaklhfladjhkflahflk"
+    return <Passage />;
   }
 
   render() {
@@ -17,11 +19,12 @@ class App extends Component {
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={['employer']}
+            defaultSelectedKeys={['tab1']}
             style={{ lineHeight: '64px' }}
-            onSelect={this.onSelectTab}
+            //onSelect={this.onSelectTab}
           >
-            <Menu.Item key="1">text1</Menu.Item>
+            <Menu.Item key="tab1">text1</Menu.Item>
+            <Menu.Item key="tab2">text2</Menu.Item>
           </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>
@@ -32,7 +35,7 @@ class App extends Component {
         <Footer style={{ textAlign: 'center' }}>
           Dorahackathon ©2018
         </Footer>
-</Layout>
+      </Layout>
     );
   }
 }
