@@ -7,22 +7,20 @@ class Passage extends Component {
       this.state = {};
     }
     renderContent() {
-        const { passage, lastPaidDate, balance } = this.state;
+        const { passage} = this.state;
     
         return (
             <div>
               <Row gutter={16}>
-                <Col span={8}>
+                <Col span={16}>
                   <Card title="card1">card1</Card>
                 </Col>
-                <Col span={8}>
+              </Row>
+              <Row gutter={16}>
+                <Col span={16}>
                   <Card title="card2">card2</Card>
                 </Col>
-                <Col span={8}>
-                  <Card title="card3">card3</Card>
-                </Col>
               </Row>
-      
               <Button
                 type="primary"
                 icon="bank"
@@ -38,7 +36,7 @@ class Passage extends Component {
     
         return (
           <Layout style={{ padding: '0 24px', background: '#fff' }}>
-            <h2>head2</h2>
+            <h2>Passage</h2>
             {this.renderContent()}
           </Layout >
         );
