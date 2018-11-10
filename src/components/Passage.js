@@ -26,9 +26,10 @@ class Passage extends Component {
         "key": "boarticle"
       }), config)
       .then(response => {
-        this.setState({
-          passage: response.data.result.data
-        });
+        if (response.data.result.data)
+          this.setState({
+            passage: response.data.result.data
+          });
       });
     }
 
@@ -42,32 +43,21 @@ class Passage extends Component {
           const {title, detail} = passage;
           _title = title;
           _detail = detail;
-        }
-        return (
-          <List.Item.Meta
-          title={_title}
-          description={_detail}
-          />/*
-            <div>
-              <Row gutter={16}>
-                <Col span={16}>
-                  <Card title={_title}>{_detail}</Card>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col span={16}>
-                  <Card title="card2">card2</Card>
-                </Col>
-              </Row>
-              <Button
-                type="primary"
-                icon="bank"
-                //onClick={this.hoge}
-              >
-                button2
-              </Button>
-            </div>*/
-          );
+          return (
+            <List.Item
+            key={this.props.tx}
+            extra={<img width={272} alt="logo" src="/elaq.png" />}
+            >
+            <List.Item.Meta
+              title={_title}
+              description={_detail}
+            />
+            </List.Item>
+
+            );
+        }else
+        return null;
+
     }
     render() {
         const { account, payroll, web3 } = this.props;
